@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movie"
+            type="com.db.mooviez.database.MovieDetails" />
+        <variable
+            name="handler"
+            type="com.db.mooviez.views.MovieDetailsActivity" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".views.MovieDetailsActivity">
+
+        <ImageView
+            android:id="@+id/details_image"
+            android:layout_width="128dp"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{movie.poster}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/harry_potter_mock"/>
+
+        <TextView
+            android:id="@+id/details_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="@={movie.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/details_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Harry Potter and the Deathly Hallows: Part 2"/>
+
+        <TextView
+            android:id="@+id/details_released"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:text="@={movie.released}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/details_title"
+            app:layout_constraintTop_toBottomOf="@+id/details_title"
+            tools:text="15 Jul 2011"/>
+
+        <TextView
+            android:id="@+id/details_rated"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:text="@={movie.rated}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/details_released"
+            app:layout_constraintTop_toBottomOf="@+id/details_released"
+            tools:text="PG-13"/>
+
+        <TextView
+            android:id="@+id/details_runtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:text="@={movie.runtime}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/details_rated"
+            app:layout_constraintTop_toBottomOf="@+id/details_rated"
+            tools:text="130 min"/>
+
+        <ImageButton
+            android:id="@+id/details_favorite"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:padding="9dp"
+            android:tint="@android:color/holo_red_dark"
+            android:background="@color/transparent"
+            android:onClick="@{() -> handler.onFavoriteClick()}"
+            android:src="@{movie.favorite ? @drawable/favorite_selected_icon : @drawable/favorite_tab_icon}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_image"
+            app:srcCompat="@android:color/darker_gray"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rating_icon_background"
+            app:srcCompat="@drawable/imdb_icon"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rating_icon_background"
+            app:srcCompat="@drawable/rotten_tomatoes_icon"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rating_icon_background"
+            app:srcCompat="@drawable/metacritic_icon"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.843"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_rotten"
+            app:srcCompat="@android:color/darker_gray"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/details_imdb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:imdbRating="@{movie}"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            tools:text="8.1/10"/>
+
+        <TextView
+            android:id="@+id/details_rotten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:rtRating="@{movie}"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            tools:text="96%"/>
+
+        <TextView
+            android:id="@+id/details_metacritic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:metaRating="@{movie}"
+            app:layout_constraintEnd_toEndOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            tools:text="87/100"/>
+
+        <TextView
+            android:id="@+id/details_plot"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="@={movie.plot}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6"
+            tools:text="Harry, Ron, and Hermione search for Voldemort's remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts."/>
+    </android.support.constraint.ConstraintLayout>
+</layout>
